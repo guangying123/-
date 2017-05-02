@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>碰撞试验</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #div{
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            position: relative;
+        }
+        #ball{
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            background-color: #00d8ff;
+            position: absolute;
+        }
+    </style>
+
+
+</head>
+<body>
+
+<div id="div">
+    <div id="ball">
+    </div>
+</div>
+
+<script>
+    var setInt;
+    var startX = 0,startY = 0,x = 1,y = 1;
+    var div = document.getElementById('div');
+    var ball = document.getElementById('ball');
+
+    window.onload=function () {
+      setInt = setInterval("show()",30);
+    };
+    function  show()
+    {
+        var lright = div.clientWidth - ball.offsetWidth;
+        var ldown = div.clientHeight-ball.offsetHeight;
+
+        console.log("lright"+lright);
+        console.log("ldown"+ldown);
+
+
+        if(startX<0||startX>=lright)
+        {
+            x*=-1;
+        }
+        if(startY<0||startY>=ldown)
+        {
+            y*=-1;
+        }
+        startX+=4*x;
+        startY+=4*y;
+        console.log(startX);
+        console.log(startY)
+        ball.style.left=startX+'px';
+        ball.style.top=startY+'px';
+        console.log("111");
+        if(startX >400)
+        {
+            clearInterval(setInt);
+        }
+    }
+    
+</script>
+</body>
+</html>
